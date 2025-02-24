@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/cita.dart';
 import '../services/api_service.dart';
+<<<<<<< HEAD
 import 'package:intl/intl.dart';
 
 class EditCitaScreen extends StatefulWidget {
@@ -8,6 +9,12 @@ class EditCitaScreen extends StatefulWidget {
   final VoidCallback? onCitaSaved;
 
   EditCitaScreen({this.cita, this.onCitaSaved});
+=======
+
+class EditCitaScreen extends StatefulWidget {
+  final Cita? cita;
+  EditCitaScreen({this.cita});
+>>>>>>> dcdac479fc5ff24cec8d6452647fdc487cb1962e
 
   @override
   _EditCitaScreenState createState() => _EditCitaScreenState();
@@ -18,16 +25,23 @@ class _EditCitaScreenState extends State<EditCitaScreen> {
   late TextEditingController pacienteController;
   late TextEditingController medicoController;
   late TextEditingController fechaController;
+<<<<<<< HEAD
   late TextEditingController consultorioController;
 
   String? selectedHora;
 
+=======
+  late TextEditingController horaController;
+  late TextEditingController consultorioController;
+
+>>>>>>> dcdac479fc5ff24cec8d6452647fdc487cb1962e
   @override
   void initState() {
     super.initState();
     pacienteController = TextEditingController(text: widget.cita?.paciente_Id.toString() ?? '');
     medicoController = TextEditingController(text: widget.cita?.medico_Id.toString() ?? '');
     fechaController = TextEditingController(text: widget.cita?.fecha ?? '');
+<<<<<<< HEAD
     consultorioController = TextEditingController(text: widget.cita?.consultorioNumero ?? '');
     selectedHora = widget.cita?.hora;
   }
@@ -68,25 +82,41 @@ class _EditCitaScreenState extends State<EditCitaScreen> {
       }
     }
     return horarios;
+=======
+    horaController = TextEditingController(text: widget.cita?.hora ?? '');
+    consultorioController = TextEditingController(text: widget.cita?.consultorioNumero ?? '');
+>>>>>>> dcdac479fc5ff24cec8d6452647fdc487cb1962e
   }
 
   void saveCita() async {
     if (_formKey.currentState!.validate()) {
       final cita = Cita(
+<<<<<<< HEAD
         id: widget.cita?.id,
         paciente_Id: int.tryParse(pacienteController.text) ?? 0,
         medico_Id: int.tryParse(medicoController.text) ?? 0,
         fecha: fechaController.text,
         hora: selectedHora ?? '',
+=======
+        id: widget.cita?.id,  // Si es una cita existente, mantiene el ID
+        paciente_Id: int.tryParse(pacienteController.text) ?? 0,
+        medico_Id: int.tryParse(medicoController.text) ?? 0,
+        fecha: fechaController.text,
+        hora: horaController.text,
+>>>>>>> dcdac479fc5ff24cec8d6452647fdc487cb1962e
         consultorioNumero: consultorioController.text,
       );
 
       try {
         await ApiService().saveCita(cita);
+<<<<<<< HEAD
         if (widget.onCitaSaved != null) {
           widget.onCitaSaved!();
         }
         Navigator.pop(context, true);
+=======
+        Navigator.pop(context);
+>>>>>>> dcdac479fc5ff24cec8d6452647fdc487cb1962e
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Error al guardar la cita: ${e.toString()}')),
@@ -95,6 +125,10 @@ class _EditCitaScreenState extends State<EditCitaScreen> {
     }
   }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> dcdac479fc5ff24cec8d6452647fdc487cb1962e
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,6 +157,7 @@ class _EditCitaScreenState extends State<EditCitaScreen> {
                       Text('Formulario de Cita',
                           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.blue.shade900)),
                       SizedBox(height: 20),
+<<<<<<< HEAD
                       TextFormField(
                         controller: pacienteController,
                         decoration: InputDecoration(labelText: 'Paciente ID'),
@@ -166,6 +201,13 @@ class _EditCitaScreenState extends State<EditCitaScreen> {
                         decoration: InputDecoration(labelText: 'Consultorio'),
                         validator: (value) => value == null || value.isEmpty ? 'Ingrese el número de consultorio' : null,
                       ),
+=======
+                      TextFormField(controller: pacienteController, decoration: InputDecoration(labelText: 'Paciente ID')),
+                      TextFormField(controller: medicoController, decoration: InputDecoration(labelText: 'Médico ID')),
+                      TextFormField(controller: fechaController, decoration: InputDecoration(labelText: 'Fecha (YYYY-MM-DD)')),
+                      TextFormField(controller: horaController, decoration: InputDecoration(labelText: 'Hora (HH:MM)')),
+                      TextFormField(controller: consultorioController, decoration: InputDecoration(labelText: 'Consultorio')),
+>>>>>>> dcdac479fc5ff24cec8d6452647fdc487cb1962e
                       SizedBox(height: 20),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(

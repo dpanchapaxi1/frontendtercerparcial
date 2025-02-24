@@ -10,6 +10,7 @@ class CitaCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return Align(
       alignment: Alignment.center, // Centra la tarjeta en el eje horizontal
       child: SizedBox(
@@ -43,6 +44,26 @@ class CitaCard extends StatelessWidget {
               ),
             ),
           ),
+=======
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      elevation: 5,
+      child: ListTile(
+        title: Text('Paciente ID: ${cita.paciente_Id} - Médico ID: ${cita.medico_Id}'),
+        subtitle: Text('${cita.fecha} a las ${cita.hora} en consultorio ${cita.consultorioNumero}'),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: Icon(Icons.edit, color: Colors.blue),
+              onPressed: onEdit,
+            ),
+            IconButton(
+              icon: Icon(Icons.delete, color: Colors.red),
+              onPressed: onDelete,
+            ),
+          ],
+>>>>>>> dcdac479fc5ff24cec8d6452647fdc487cb1962e
         ),
       ),
     );

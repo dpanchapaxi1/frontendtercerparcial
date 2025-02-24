@@ -26,6 +26,7 @@ class _CitasListScreenState extends State<CitasListScreen> {
     });
   }
 
+<<<<<<< HEAD
   void confirmDeleteCita(int id) {
     showDialog(
       context: context,
@@ -122,6 +123,37 @@ class _CitasListScreenState extends State<CitasListScreen> {
         },
         backgroundColor: Colors.blueAccent,
         child: Icon(Icons.add, color: Colors.white),
+=======
+  void deleteCita(int id) async {
+    await apiService.deleteCita(id);
+    fetchCitas();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Citas Médicas')),
+      body: ListView.builder(
+        itemCount: citas.length,
+        itemBuilder: (context, index) {
+          final cita = citas[index];
+          return CitaCard(
+            cita: cita,
+            onEdit: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => EditCitaScreen(cita: cita)),
+            ),
+            onDelete: () => deleteCita(cita.id ?? 0),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => EditCitaScreen()),
+        ),
+        child: Icon(Icons.add),
+>>>>>>> dcdac479fc5ff24cec8d6452647fdc487cb1962e
       ),
     );
   }

@@ -10,14 +10,13 @@ class CitaCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     return Align(
       alignment: Alignment.center, // Centra la tarjeta en el eje horizontal
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.6, // Ajusta el ancho (60% de la pantalla)
         child: Card(
           color: Colors.grey[200], // Cambia el color del fondo de la tarjeta
-          margin: EdgeInsets.symmetric(vertical: 0), // Espaciado vertical
+          margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10), // Espaciado
           elevation: 5, // Agrega sombra a la tarjeta
           child: Padding(
             padding: EdgeInsets.all(10), // Agrega padding interno
@@ -44,26 +43,6 @@ class CitaCard extends StatelessWidget {
               ),
             ),
           ),
-=======
-    return Card(
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      elevation: 5,
-      child: ListTile(
-        title: Text('Paciente ID: ${cita.paciente_Id} - Médico ID: ${cita.medico_Id}'),
-        subtitle: Text('${cita.fecha} a las ${cita.hora} en consultorio ${cita.consultorioNumero}'),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            IconButton(
-              icon: Icon(Icons.edit, color: Colors.blue),
-              onPressed: onEdit,
-            ),
-            IconButton(
-              icon: Icon(Icons.delete, color: Colors.red),
-              onPressed: onDelete,
-            ),
-          ],
->>>>>>> dcdac479fc5ff24cec8d6452647fdc487cb1962e
         ),
       ),
     );

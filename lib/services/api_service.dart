@@ -3,15 +3,10 @@ import 'package:http/http.dart' as http;
 import '../models/cita.dart';
 
 class ApiService {
-<<<<<<< HEAD
-  final String baseUrl = 'http://localhost:8081/api/citas';
-  final String authUrl = 'http://localhost:8081/api/pacientes/auth';// Asegúrate de usar la URL correcta
-
-  //METODOS PARA CITAS
-=======
   final String baseUrl = 'http://localhost:8080/api/citas'; // Asegúrate de usar la URL correcta
+  final String authUrl = 'http://localhost:8080/api/pacientes/auth';
 
->>>>>>> dcdac479fc5ff24cec8d6452647fdc487cb1962e
+  // MÉTODO PARA OBTENER CITAS
   Future<List<Cita>> getCitas() async {
     final response = await http.get(Uri.parse(baseUrl));
     if (response.statusCode == 200) {
@@ -22,18 +17,18 @@ class ApiService {
     }
   }
 
-<<<<<<< HEAD
+  // MÉTODO PARA GUARDAR O ACTUALIZAR UNA CITA
   Future<void> saveCita(Cita cita) async {
-    final bool esNuevaCita = cita.id == null; // Verifica si es una nueva cita
-
+    final bool esNuevaCita = cita.id == null;
     final String url = esNuevaCita ? baseUrl : '$baseUrl/${cita.id}';
+
     final response = await (esNuevaCita
-        ? http.post( // Crear nueva cita
+        ? http.post(
       Uri.parse(url),
       headers: {"Content-Type": "application/json"},
       body: json.encode(cita.toJson()),
     )
-        : http.put( // Actualizar cita existente
+        : http.put(
       Uri.parse(url),
       headers: {"Content-Type": "application/json"},
       body: json.encode(cita.toJson()),
@@ -44,24 +39,18 @@ class ApiService {
     }
   }
 
-
+  // MÉTODO PARA ELIMINAR UNA CITA
   Future<void> deleteCita(int id) async {
-=======
-  Future<void> deleteCita(int id) async {  // 🔹 Agregar este método
->>>>>>> dcdac479fc5ff24cec8d6452647fdc487cb1962e
     final response = await http.delete(Uri.parse('$baseUrl/$id'));
     if (response.statusCode != 200) {
       throw Exception('Error al eliminar la cita');
     }
   }
-<<<<<<< HEAD
 
-
-  //METODOS PARA LOGIN
-// Método para autenticar pacientes
+  // MÉTODO PARA AUTENTICAR PACIENTES
   Future<bool> autenticarPaciente(String email, String fechaNacimiento) async {
     final response = await http.post(
-      Uri.parse('$baseUrl/login-paciente'), // Ruta del backend para autenticar pacientes
+      Uri.parse('$authUrl/login-paciente'), // Ruta del backend para autenticar pacientes
       headers: {'Content-Type': 'application/json'},
       body: json.encode({'email': email, 'fechaNacimiento': fechaNacimiento}),
     );
@@ -74,19 +63,4 @@ class ApiService {
       return false;
     }
   }
-=======
-  Future<void> saveCita(Cita cita) async {
-    final url = cita.id == null ? baseUrl : '$baseUrl/${cita.id}';
-    final response = await http.post(
-      Uri.parse(url),
-      headers: {"Content-Type": "application/json"},
-      body: json.encode(cita.toJson()),
-    );
-
-    if (response.statusCode != 200 && response.statusCode != 201) {
-      throw Exception('Error al guardar la cita');
-    }
-  }
-
->>>>>>> dcdac479fc5ff24cec8d6452647fdc487cb1962e
 }

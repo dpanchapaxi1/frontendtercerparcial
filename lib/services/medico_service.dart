@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../models/medico.dart';
 
 class MedicoService {
-  final String baseUrl = 'http://localhost:8081/api/medicos'; // Cambia la URL por la de tu backend
+  final String baseUrl = 'http://localhost:8080/api/medicos'; // Cambia la URL por la de tu backend
 
   Future<List<Medico>> obtenerMedicos() async {
     final response = await http.get(Uri.parse(baseUrl));
